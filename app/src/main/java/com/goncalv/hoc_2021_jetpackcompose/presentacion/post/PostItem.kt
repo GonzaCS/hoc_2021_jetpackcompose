@@ -1,6 +1,12 @@
 package com.goncalv.hoc_2021_jetpackcompose.presentacion.post
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.R
 import androidx.compose.foundation.shape.CircleShape
@@ -28,14 +34,33 @@ import com.goncalv.hoc_2021_jetpackcompose.dominio.Post
 import com.goncalv.hoc_2021_jetpackcompose.dominio.User
 import com.goncalv.hoc_2021_jetpackcompose.ui.theme.HoC_2021_JetpackComposeTheme
 
+@ExperimentalAnimationApi
 @Composable
 fun PostItem(
     post: Post
 ){
     Column{
-        AuthorInfoSection(author = post.author)
-        PostImage(imageId = post.postImageId)
-        IconSection()
+        var show by remember{ mutableStateOf(false)}
+        Column(modifier = Modifier.clickable { show = !show }) {
+            AuthorInfoSection(author = post.author)
+        }
+        Column{
+            AnimatedVisibility(
+                visible = show,
+                enter = fadeIn(
+                    initialAlpha = 0.4f
+                ), exit = fadeOut(
+                    animationSpec = tween(durationMillis = 250)
+                )
+            ) {
+                Column{
+                    PostImage(imageId = post.postImageId)
+                    IconSection()
+                }
+
+            }
+        }
+
     }
 }
 
@@ -150,6 +175,7 @@ fun RowImageWithText(
         )
     }
 }
+@ExperimentalAnimationApi
 @Preview(showBackground = true)
 @Composable
 fun PostItemPreview() {
@@ -158,6 +184,7 @@ fun PostItemPreview() {
     }
 }
 
+@ExperimentalAnimationApi
 @Preview(showBackground = true)
 @Composable
 fun PostItemBigPreview() {
@@ -166,6 +193,7 @@ fun PostItemBigPreview() {
     }
 }
 
+@ExperimentalAnimationApi
 @Preview(showBackground = true)
 @Composable
 fun PostItemDarkPreview() {

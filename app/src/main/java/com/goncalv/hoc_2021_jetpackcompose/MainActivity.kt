@@ -3,6 +3,7 @@ package com.goncalv.hoc_2021_jetpackcompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -24,6 +25,7 @@ import com.goncalv.hoc_2021_jetpackcompose.presentacion.timeline.TimelineScreen
 import com.goncalv.hoc_2021_jetpackcompose.ui.theme.HoC_2021_JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
+    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

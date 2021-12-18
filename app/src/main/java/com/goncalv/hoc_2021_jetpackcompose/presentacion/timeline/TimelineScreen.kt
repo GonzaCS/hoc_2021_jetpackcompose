@@ -1,5 +1,6 @@
 package com.goncalv.hoc_2021_jetpackcompose.presentacion.timeline
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,6 +13,7 @@ import com.goncalv.hoc_2021_jetpackcompose.data.initialPosts
 import com.goncalv.hoc_2021_jetpackcompose.dominio.Post
 import com.goncalv.hoc_2021_jetpackcompose.presentacion.post.PostItem
 
+@ExperimentalAnimationApi
 @Composable
 fun TimelineScreen() {
     Scaffold(
@@ -41,6 +43,7 @@ fun TimelineScreen() {
     }
 }
 
+@ExperimentalAnimationApi
 @Composable
 fun TimelineList(listOfPosts: List<Post>) {
     LazyColumn {
